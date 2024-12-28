@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class VolumeSettings : MonoBehaviour
 {
+    private const int _multiplier = 20;
+
     [SerializeField] private AudioMixer _audioMixer;
     [SerializeField] private Slider _sliderOfVolume;
     [SerializeField] private Slider _sliderOfButtonsVolume;
@@ -31,19 +33,19 @@ public class VolumeSettings : MonoBehaviour
 
     public void SetMasterVolume(float level)
     {
-        float volume = Mathf.Log10(level) * 20;
+        float volume = Mathf.Log10(level) * _multiplier;
         _audioMixer.SetFloat(_nameOfMasterVolume, volume);
     }
 
     public void SetBackgroundVolume(float level)
     {
-        float volume = Mathf.Log10(level) * 20;
+        float volume = Mathf.Log10(level) * _multiplier;
         _audioMixer.SetFloat(_nameOfBackgroundMusic, volume);
     }
 
     public void SetButtonsVolume(float level)
     {
-        float volume = Mathf.Log10(level) * 20;
+        float volume = Mathf.Log10(level) * _multiplier;
         _audioMixer.SetFloat(_nameOfButtonsMusic, volume);
     }
 }
