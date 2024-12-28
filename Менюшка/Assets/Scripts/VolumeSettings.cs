@@ -22,18 +22,28 @@ public class VolumeSettings : MonoBehaviour
         _sliderOfBackgroundVolume.onValueChanged.AddListener(SetBackgroundVolume);
     }
 
+    protected void OnDestroy()
+    {
+        _sliderOfVolume.onValueChanged.RemoveListener(SetMasterVolume);
+        _sliderOfButtonsVolume.onValueChanged.RemoveListener(SetButtonsVolume);
+        _sliderOfBackgroundVolume.onValueChanged.RemoveListener(SetBackgroundVolume);
+    }
+
     public void SetMasterVolume(float level)
     {
-        _audioMixer.SetFloat(_nameOfMasterVolume, Mathf.Log10(level) * 20);
+        float volume = Mathf.Log10(level) * 20;
+        _audioMixer.SetFloat(_nameOfMasterVolume, volume);
     }
 
     public void SetBackgroundVolume(float level)
     {
-        _audioMixer.SetFloat(_nameOfBackgroundMusic, Mathf.Log10(level) * 20);
+        float volume = Mathf.Log10(level) * 20;
+        _audioMixer.SetFloat(_nameOfBackgroundMusic, volume);
     }
 
     public void SetButtonsVolume(float level)
     {
-        _audioMixer.SetFloat(_nameOfButtonsMusic, Mathf.Log10(level) * 20);
+        float volume = Mathf.Log10(level) * 20;
+        _audioMixer.SetFloat(_nameOfButtonsMusic, volume);
     }
 }

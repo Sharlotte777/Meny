@@ -6,17 +6,9 @@ public class SoundSwitch : MonoBehaviour
 {
     private bool _isOn = true;
 
-    public void OnOffSounds()
+    public void ChangeStateSound()
     {
-        if (_isOn )
-        {
-            AudioListener.volume = 0f;
-            _isOn = false;
-        }
-        else if (_isOn == false )
-        {
-            AudioListener.volume = 1f;
-            _isOn = true;
-        }
+        AudioListener.volume = _isOn ? 1f : 0f;
+        _isOn = !_isOn;
     }
 }
